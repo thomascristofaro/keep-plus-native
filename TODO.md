@@ -1,91 +1,20 @@
-# Keep+ Functional Brief (for Claude 4.5)
+# TODO
+## UI Refinements
+### Homepage 
+- The "index" written must be replaced with the "Keep+" title of the left menu, so remove from here
+- The left menu must be collapsable, add the three lines button on the top left of the toolbar
+- when collapsed, in the desktop and tablet must remain the icons of the list voices of the menu
+- the search note bar must go on the toolbar for saving space in the workspace
+- when I select the notes, i want that the action button appear in the toolbar in the right side
 
-## Core Concept
-Keep+ organizes Notes. Each note can have a title, optional content, optional source link, optional cover image, and one or more tag names. Notes appear in a scrollable masonry grid. Users can add, edit and delete cards. Users can filter by tag with the left menu and can search by title with the upper search bar. The app autosaves changes as users type or leave fields.
+### Note Card (both edit and creation)
+- remove the toolbar with the back button and the "note/[id]" title
+- the header must be a cover image (something about with 150 px of height, but you can edit it) with the title input on it, placed on left botton side of it, then in the left upper corner the button arrow for come back and in the upper right corner the button for delete the note
+- miss the link field after the content and before the tags
+- if I press esc is like when i click on the back arrow
 
-## Entities
-- Note
-  - Title: required text.
-  - Content: optional long text.
-  - Link: optional URL to a source
-  - Cover Image: optional image shown on the card; set manually.
-  - Tags: a list of tag names (simple strings); used for filtering.
-  - Timestamps: created and updated times.
-
-## Screen Inventory
-- Home (Note Grid)
-  - Shows all notes or the current tag-filtered set.
-  - Supports selection mode for bulk removing.
-  - Left menu for filtering by tag
-  - Entry points: create new card, open card to edit.
-- Note Card
-  - Form for cover image, title, content, link, tags.
-  - The Card is divided in 3 parts:
-    - header: The title and the cover image behind
-    - Body: content
-    - footer: link and tags
-  - Autosaves on blur/change.
-  - create or edit a card
-
-## User Journeys
-1) Browse Notes
-- The home screen shows notes in a multi-column masonry grid (two for mobile, more for tablet and desktop). Notes display title, optional cover image and optional link.
-- Users can scroll to see more notes. Grid should feel light and fast.
-- left menu for filter notes by tag
-- upper bar with a search bar for search in notes by title
-
-2) Create a Note
-- From home, users click on + button to open the Note Card in creation mode
-- The user enters a title (required). Content, link, and tags are optional.
-- As soon as the user blurs a field or stops typing briefly, the app autosaves. There is no explicit save button.
-
-3) Edit a Card
-- Tapping a card opens the Note Card in edit view.
-- Editing uses the same autosave behavior: changes are saved on blur/change without requiring a save button.
-- Users can add/remove tags. Tag changes are saved immediately.
-
-4) Filter by Tag
-- From home, users can filter the list by selecting a tag from the left menu.
-- The filtered view shows only notes containing that tag.
-- Clicking in Home button from left menu, returns to the full list.
-
-5) Select and Delete Multiple Notes
-- Users can enter a selection mode from the home screen.
-- Tapping notes toggles selection; a simple toolbar allows "Delete".
-- Deleting removes the selected cards and returns to the home view (or the active tag view if filtering).
-
-6) Delete a Single Card
-- From the card options of the card edit view, users can delete a card.
-- After deletion, the app returns to the previous list context (home or tag-filtered view).
-
-## Screens and Routes
-- `/`: Home grid list of cards; tag filter applied via search or chip.
-- `/search=XXXX`: Searched list view.
-- `/tag/[name]`: Filtered list view.
-- `/note`: Create card.
-- `/note/[id]`: Edit card.
-
-## Behaviors and Rules
-- Autosave: No Save button. The app saves when a field loses focus or after a short pause in typing.
-- Tags: Tags are plain strings (e.g., "work", "ideas"). 
-- Cover images: Store and display only a URL to an image. Load it only when open the app
-- Navigation consistency: After save or delete, the user remains in a sensible context. Deleting from edit returns to the list; deleting in a tag view returns to that filtered list.
-- Performance: Lists should render smoothly; avoid heavy visual effects.
-- Dark mode: Support light/dark themes based on the system appearance.
-
-## Non-Goals
-- No rich tag management (no colors, no tag metadata beyond names).
-- No complex formatting tools; a simple content field is sufficient.
-- No explicit save/cancel flows; autosave handles persistence.
-
-## Implementation Notes (For Reference Only)
-- Use the target libraries listed above; they are suggestions to achieve the behaviors. Prioritize the functional rules.
-- Data persistence should ensure cards are available across app launches.
-- Log important actions (create, update, delete) minimally for diagnostics; do not expose logs to users.
-
-## Target Stack
-- Runtime: React Native + Expo (managed workflow).
-- Navigation: Expo Router (file-based). Keep route-driven state semantics.
-- UI: Gluestack UI for standard components; minimal custom styling.
-- Data: Supabase JS SDK; Postgres schema with RLS. Avoid platform-specific native modules.
-- State: Zustand for local UI state and cache.
+## BUG:
+- when I try to select more items, i cannot: when i click in another note it open that and not select it
+- when I create a new note, it saves multiple times in db with different step of the title, for example: 
+  - i want start to typing "Title Example"
+  - it create multiple note with titles: "T", "Tit", "Title " and so on 
