@@ -1,6 +1,8 @@
 import { NoteEditor } from '@/components/NoteEditor';
 import React from 'react';
+import { useColorScheme } from 'react-native';
 
 export default function CreateNoteScreen() {
-    return <NoteEditor />;
+    const colorScheme = useColorScheme();
+    return <NoteEditor darkMode={colorScheme === 'dark'} />;
 }

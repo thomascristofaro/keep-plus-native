@@ -11,6 +11,7 @@ interface MasonryGridProps {
     onNoteLongPress?: (note: Note) => void;
     selectedNotes?: string[];
     selectionMode?: boolean;
+    darkMode?: boolean;
 }
 
 export const MasonryGrid = ({
@@ -19,6 +20,7 @@ export const MasonryGrid = ({
     onNoteLongPress,
     selectedNotes = [],
     selectionMode = false,
+    darkMode = false,
 }: MasonryGridProps) => {
     const { width } = useWindowDimensions();
     const numColumns = width > 768 ? 3 : 2; // Simple responsive breakpoint
@@ -42,6 +44,7 @@ export const MasonryGrid = ({
                                 onLongPress={() => onNoteLongPress?.(note)}
                                 selected={selectedNotes.includes(note.id)}
                                 selectionMode={selectionMode}
+                                darkMode={darkMode}
                             />
                         ))}
                     </VStack>
