@@ -30,7 +30,7 @@ export const TagFilter = ({ tags, selectedTag, onSelectTag, collapsed, darkMode 
                                 : (darkMode ? 'hover:bg-gray-700' : 'hover:bg-background-100')
                         }`}
                     >
-                        <Icon as={EditIcon} size="lg" className={
+                        <Icon as={EditIcon} size={collapsed ? 'xl' : 'lg'} className={
                             selectedTag === null 
                                 ? (darkMode ? 'text-primary-100' : 'text-primary-900')
                                 : (darkMode ? 'text-gray-300' : 'text-typography-700')
@@ -56,7 +56,7 @@ export const TagFilter = ({ tags, selectedTag, onSelectTag, collapsed, darkMode 
                                     : (darkMode ? 'hover:bg-gray-700' : 'hover:bg-background-100')
                             }`}
                         >
-                            <Icon as={CircleIcon} size="lg" className={
+                            <Icon as={CircleIcon} size={collapsed ? 'xl' : 'lg'} className={
                                 selectedTag === tag 
                                     ? (darkMode ? 'text-primary-100' : 'text-primary-900')
                                     : (darkMode ? 'text-gray-300' : 'text-typography-700')
@@ -84,7 +84,7 @@ export const TagFilter = ({ tags, selectedTag, onSelectTag, collapsed, darkMode 
                             darkMode ? 'hover:bg-gray-700' : 'hover:bg-background-100'
                         }`}
                     >
-                        <Icon as={darkMode ? SunIcon : MoonIcon} size="lg" className={darkMode ? 'text-gray-300' : 'text-typography-700'} />
+                        <Icon as={darkMode ? SunIcon : MoonIcon} size={collapsed ? 'xl' : 'lg'} className={darkMode ? 'text-gray-300' : 'text-typography-700'} />
                         {!collapsed && (
                             <Text className={`font-medium ml-3 ${darkMode ? 'text-gray-300' : 'text-typography-700'}`}>
                                 {darkMode ? 'Light Mode' : 'Dark Mode'}

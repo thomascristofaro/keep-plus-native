@@ -79,7 +79,7 @@ export default function HomeScreen() {
     <SafeAreaView style={{ flex: 1, backgroundColor: darkMode ? '#1a1a1a' : 'white' }}>
       <Box className={`flex-1 ${darkMode ? 'bg-gray-900' : 'bg-white'}`}>
         {/* Top Toolbar - Full Width */}
-        <HStack className={`px-4 py-3 border-b items-center w-full ${
+        <HStack className={`px-4 border-b items-center w-full h-16 ${
           darkMode ? 'bg-gray-800 border-gray-700' : 'bg-white border-outline-100'
         }`}>
           {/* Hamburger Menu Button */}
@@ -104,13 +104,13 @@ export default function HomeScreen() {
           {/* Selection Mode Toolbar */}
           {selectionMode && (
             <HStack className="flex-1 items-center justify-between">
-              <Text className="font-bold text-primary-900">{selectedNotes.length} selected</Text>
+              <Text className={`font-bold ${darkMode ? 'text-white' : 'text-primary-900'}`}>{selectedNotes.length} selected</Text>
               <HStack space="md">
                 <Button variant="link" action="negative" onPress={handleBulkDelete}>
-                  <ButtonIcon as={TrashIcon} size="xl" />
+                  <ButtonIcon as={TrashIcon} size="xl" className={darkMode ? 'text-red-400' : ''} />
                 </Button>
                 <Button variant="link" onPress={cancelSelection}>
-                  <ButtonIcon as={CloseIcon} size="xl" />
+                  <ButtonIcon as={CloseIcon} size="xl" className={darkMode ? 'text-white' : ''} />
                 </Button>
               </HStack>
             </HStack>

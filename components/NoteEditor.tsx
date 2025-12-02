@@ -251,10 +251,9 @@ export const NoteEditor = ({ noteId, darkMode = false }: NoteEditorProps) => {
                         <VStack space="md">
                             {/* Cover Image URL Input */}
                             <Box>
-                                <Text className={`font-semibold mb-2 text-sm ${darkMode ? 'text-gray-300' : 'text-typography-600'}`}>Cover Image URL</Text>
-                                <Input variant="outline" size="md" className={darkMode ? 'bg-gray-800 border-gray-700' : ''}>
+                                <Input variant="outline" size="md" className={darkMode ? 'bg-gray-800 border-gray-700' : 'bg-background-50'}>
                                     <InputField
-                                        placeholder="https://example.com/image.jpg"
+                                        placeholder="Cover Image: https://example.com/image.jpg"
                                         value={coverImage}
                                         onChangeText={handleCoverImageChange}
                                         className={darkMode ? 'text-gray-100' : ''}
@@ -264,9 +263,9 @@ export const NoteEditor = ({ noteId, darkMode = false }: NoteEditorProps) => {
                             </Box>
 
                             {/* Content Editor */}
-                            <Box className="mt-4">
+                            <Box className={`mt-4 border rounded-lg p-3 ${darkMode ? 'bg-gray-800 border-gray-700' : 'bg-background-50 border-outline-200'}`}>
                                 <TextInput
-                                    placeholder="Start typing..."
+                                    placeholder="Content: Start typing..."
                                     value={content}
                                     onChangeText={handleContentChange}
                                     multiline
@@ -277,10 +276,9 @@ export const NoteEditor = ({ noteId, darkMode = false }: NoteEditorProps) => {
 
                             {/* Link Field */}
                             <Box className="mt-4">
-                                <Text className={`font-semibold mb-2 text-sm ${darkMode ? 'text-gray-300' : 'text-typography-600'}`}>Link</Text>
-                                <Input variant="outline" size="md" className={darkMode ? 'bg-gray-800 border-gray-700' : ''}>
+                                <Input variant="outline" size="md" className={darkMode ? 'bg-gray-800 border-gray-700' : 'bg-background-50'}>
                                     <InputField
-                                        placeholder="https://example.com"
+                                        placeholder="Link: https://example.com"
                                         value={link}
                                         onChangeText={handleLinkChange}
                                         keyboardType="url"
