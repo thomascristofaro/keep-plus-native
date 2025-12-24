@@ -143,7 +143,7 @@ export default function HomeScreen() {
 
           {/* FAB for adding new note */}
           {!selectionMode && (
-            <Link href="/note" as any asChild>
+            <Link href="/note" asChild>
               <Fab
                 size="lg"
                 placement="bottom right"

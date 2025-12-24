@@ -1,6 +1,17 @@
-# Welcome to your Expo app 👋
+# Keep+ Native 📝
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+A cross-platform note-taking app (Keep/Notion-style) built with Expo, React Native, and Supabase.
+
+## Features
+
+- ✨ **Cross-platform**: Works on iOS, Android, and Web
+- 📱 **Android Share Intent**: Share text from any Android app directly to Keep+
+- 🎨 **Beautiful UI**: NativeWind (Tailwind CSS) + Gluestack UI
+- 🔄 **Real-time sync**: Supabase backend with optimistic updates
+- 🏷️ **Tags & Organization**: Filter notes by tags
+- 🔍 **Search**: Quick search across all notes
+- 📸 **Cover Images**: Add cover images to notes
+- 🌓 **Dark mode ready**: Automatic theme support
 
 ## Get started
 
@@ -10,30 +21,62 @@ This is an [Expo](https://expo.dev) project created with [`create-expo-app`](htt
    npm install
    ```
 
-2. Start the app
+2. Set up environment variables
+
+   Create a `.env` file in the root directory:
+
+   ```env
+   EXPO_PUBLIC_SUPABASE_URL=your_supabase_url
+   EXPO_PUBLIC_SUPABASE_ANON_KEY=your_supabase_anon_key
+   ```
+
+3. Start the app
 
    ```bash
    npx expo start
    ```
 
-In the output, you'll find options to open the app in a
+4. For Android (to test share intent):
 
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
+   ```bash
+   npm run android
+   ```
 
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
+## Android Share Intent
 
-## Get a fresh project
+The app supports receiving text shared from other Android apps:
 
-When you're ready, run:
+1. Open any app with text (browser, notes, messages, etc.)
+2. Select text and tap "Share"
+3. Choose "Keep+ Native" from the share menu
+4. A new note will be automatically created with the shared text
 
-```bash
-npm run reset-project
+**Technical details:**
+- Uses custom Expo config plugin (`plugins/withShareIntent.js`)
+- Integrates `react-native-receive-sharing-intent`
+- Automatically creates notes with shared content
+
+## Project Structure
+
+```
+app/                    # File-based routing (expo-router)
+  index.tsx            # Home screen (note grid)
+  note/[id].tsx        # Note editor
+components/            # Reusable components
+  ui/                  # Gluestack UI primitives
+store/                 # Zustand state management
+lib/                   # Utilities (Supabase client)
+plugins/               # Expo config plugins
 ```
 
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
+## Tech Stack
+
+- **Framework**: Expo SDK 54 with new architecture
+- **UI**: React Native 0.81.5 + React 19.1
+- **Routing**: Expo Router v6 (file-based)
+- **Styling**: NativeWind v4 + Gluestack UI
+- **State**: Zustand with optimistic updates
+- **Backend**: Supabase (PostgreSQL)
 
 ## Learn more
 
